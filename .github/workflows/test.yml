@@ -1,0 +1,24 @@
+name: Testar Exercícios
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install jest
+
+      - name: Rodar testes
+        run: |
+          npx jest exercicios/**/solution.test.js
